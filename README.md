@@ -35,6 +35,8 @@ http://localhost:3000/api/post
 http://127.0.0.1:3000/api/post
 ```
 
+If the request is successfull the endpoint will return the cookie in the response body
+
 You can use whichever tool you like to send requests to this endpoint
 
 For example, `test-next-headers`, `Postman`, `curl`, `Powershell` or your own script
@@ -47,6 +49,8 @@ For example, `test-next-headers`, `Postman`, `curl`, `Powershell` or your own sc
 
 ## test-next-headers
 A simple GO CLI that creates a random base64 string of a given size, then sends a post requst to the nextjs-app enpoint with the generated string in the cookie header
+
+The HTTP response and response body will be output to the terminal
 
 <br>
 
