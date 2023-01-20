@@ -48,9 +48,11 @@ For example, `test-next-headers`, `Postman`, `curl`, `Powershell` or your own sc
 <br>
 
 ## test-next-headers
-A simple GO CLI that creates a random base64 string of a given size, then sends a post requst to the nextjs-app enpoint with the generated string in the cookie header
+A simple GO CLI that creates a random base64 string of a given size in bytes 
 
-The HTTP response and response body will be output to the terminal
+if the `--request` flag is used, it sends a post requst to the nextjs-app enpoint with the generated string in the cookie header
+
+if the `--request` flag is used, the HTTP response and response body will be output to the terminal, otherwise the generated string will be output. 
 
 <br>
 
@@ -60,8 +62,9 @@ Built executables for Windows, Mac and Linux can be found in `./test-next-header
 
 <br>
 
-## usage
-**Windows**
+## Usage
+
+Generate a random base64 string of a given size
 ```
 cd test-next-header\dist\tnh_windows_amd64_v1
 .\tnh.exe --stringSize <DESIRED_STRING_SIZE_IN_BYTES>
@@ -71,22 +74,20 @@ Example
 .\tnh.exe --stringSize 16384
 ```
 
-**Mac**
+Generate a random string of a given size and send it in the cookie header to the nextjs-app
 ```
-cd test-next-header\dist\tnh_darwin_amd64_v1
-./tnh.exe --stringSize <DESIRED_STRING_SIZE_IN_BYTES>
-```
-Example
-```
-./tnh.exe --stringSize 16384
+.\tnh.exe --stringSize <DESIRED_STRING_SIZE_IN_BYTES> --request
 ```
 
-**Linux**
-```
-cd test-next-header\dist\tnh_linux_amd64_v1
-./tnh.exe --stringSize <DESIRED_STRING_SIZE_IN_BYTES>
-```
 Example
 ```
-./tnh.exe --stringSize 16384
+.\tnh.exe --stringSize 16384 --request
 ```
+
+If using Mac or Linux, the same usage applies but you should use the binary for your OS
+
+**Mac** - `\dist\tnh_darwin_amd64_v1`
+
+**Linux** - `\dist\tnh_linux_amd64_v1`
+
+Execute with `./tnh`
