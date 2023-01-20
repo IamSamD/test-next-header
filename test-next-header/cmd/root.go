@@ -15,6 +15,7 @@ import (
 )
 
 var stringSize string
+var request bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -42,17 +43,20 @@ func Execute() {
 
 	cookieHeader := randomstring.GenerateRandomString(stringSize)
 
-	response := postrequest.DoPostRequest(cookieHeader)
-	defer response.Body.Close()
+	if request == true {
+		response := postrequest.DoPostRequest(cookieHeader)
+		defer response.Body.Close()
 
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		log.Fatal(err)
+		body, err := io.ReadAll(response.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Println(response.Status)
+		fmt.Println(string(body))
+	} else {
+		fmt.Println(cookieHeader)
 	}
-
-	fmt.Println(response.Status)
-	// fmt.Println(base64.StdEncoding.EncodeToString(body))
-	fmt.Println(string(body))
 
 }
 
@@ -67,5 +71,6 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
+	rootCmd.Flags().BoolVarP(&request, "request", "r", false, "Send post request to nextjs-app")
 	rootCmd.Flags().StringVarP(&stringSize, "stringSize", "s", "", "Desired size of string (bytes)")
 }
