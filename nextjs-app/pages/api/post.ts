@@ -6,7 +6,5 @@ type Data = {
 }
 
 export default function handler( req: NextApiRequest, res: NextApiResponse<Data> ) {
-  if (req.method == "POST") {
     res.json({ cookie:`${req.headers.cookie}` })
-  }
 }
